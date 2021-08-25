@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import AuthNav from "./auth-nav";
 
 const MainNav = () => (
   <Nav className="mr-auto">
@@ -31,7 +32,7 @@ const MainNav = () => (
   </Nav>
 );
 
-const AuthNav = () => null;
+
 
 const NavBar = () => {
   return (

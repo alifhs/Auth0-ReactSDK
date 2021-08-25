@@ -1,15 +1,35 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 
-export const Profile = () => {
+import { useAuth0 } from "@auth0/auth0-react";
+
+const Profile = () => {
+  const { getAccessTokenSilently,  } = useAuth0();
+  console.log(useAuth0())
+  getAccessTokenSilently().then(res => console.log(res, "silent")).catch(e=> console.log(e, "sssh"));
+  const { user } = useAuth0();
+  const { name, picture, email } = user;
+
   return (
-    <Container className="mb-5">
-      <h1>Profile</h1>
-      <p>
-        You use will use an ID Token to get the profile information of a
-        logged-in user. <strong>This route should be private</strong>.
-      </p>
-    </Container>
+    <div>
+      <div className="row align-items-center profile-header">
+        <div className="col-md-2 mb-3">
+          <img
+            src={picture}
+            alt="Profile"
+            className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
+          />
+        </div>
+        <div className="col-md text-center text-md-left">
+          <h2>{name}</h2>
+          <p className="lead text-muted">{email}</p>
+        </div>
+      </div>
+      <div className="row">
+        <pre className="col-12 text-light bg-dark p-4">
+          {JSON.stringify(user, null, 2)}
+        </pre>
+      </div>
+    </div>
   );
 };
 
